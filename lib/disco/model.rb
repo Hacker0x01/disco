@@ -8,7 +8,7 @@ module Disco
           has_many :recommendations, class_name: "Disco::Recommendation", as: :subject, dependent: :destroy
         end
 
-        has_many :"recommended_#{name}", -> { where("disco_recommendations.context = ?", name).order("disco_recommendations.score DESC") }, through: :recommendations, source: :item, source_type: class_name
+        has_many :"recommended_#{name}", -> { where("disco_recommendations.context = ?", name).order("disco_recommendations.score DESC") }, through: :recommendations, source: :item, source_type: model_name.name
 
         define_method("update_recommended_#{name}") do |items|
           now = Time.now
