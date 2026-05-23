@@ -7,8 +7,8 @@ module Disco
         file_hash: "06416e597f82b7342361e41163890c81036900f418ad91315590814211dca490")
 
       movies = {}
-      File.foreach(item_path) do |line|
-        row = line.encode("UTF-8", "ISO-8859-1").split("|")
+      File.foreach(item_path, encoding: "iso-8859-1:utf-8") do |line|
+        row = line.split("|")
         movies[row[0]] = row[1]
       end
 
